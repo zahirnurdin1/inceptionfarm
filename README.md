@@ -86,6 +86,38 @@ Tutup semua jendela Chrome yang sedang berjalan, kemudian jalankan:
 ```
 *(Atau sesuaikan direktori instalasi Chrome Anda jika berbeda)*
 
+#### 🐧 Linux:
+
+##### A. Linux Desktop (dengan GUI)
+Tutup semua proses Chrome yang berjalan, lalu jalankan di terminal:
+
+```bash
+google-chrome --remote-debugging-port=9222 --user-data-dir="$HOME/.config/chrome-dev-profile" &
+```
+*(Atau gunakan perintah `chromium-browser` jika memakai Chromium)*
+
+##### B. Linux Server / VPS (Tanpa Display / Headless)
+Untuk VPS headless, sangat disarankan menggunakan **Xvfb** (Virtual Framebuffer) agar Cloudflare dan verifikasi browser tidak memblokir sesi headless murni:
+
+```bash
+# 1. Install Chrome dan Xvfb (Debian/Ubuntu)
+sudo apt update && sudo apt install -y xvfb google-chrome-stable
+
+# 2. Jalankan Chrome dengan Xvfb di background
+xvfb-run -a google-chrome \
+  --remote-debugging-port=9222 \
+  --user-data-dir="/tmp/chrome-dev-profile" \
+  --no-sandbox \
+  --disable-dev-shm-usage &
+```
+
+> **Tips VPS:** 
+> - Flag `--no-sandbox` diperlukan jika Anda menjalankan skrip sebagai user `root`.
+> - Flag `--disable-dev-shm-usage` mencegah browser crash akibat keterbatasan memori shared `/dev/shm`.
+> - Pastikan port `9222` aktif dengan mengetes `curl http://127.0.0.1:9222/json/version`.
+
+---
+
 ### Langkah 2: Jalankan Script Otomatisasi
 
 Buka terminal baru di folder proyek, lalu jalankan:
