@@ -1,0 +1,14 @@
+{
+  "name": "inception-automation",
+  "version": "1.0.0",
+  "description": "Browser automation for inceptionlabs.ai",
+  "main": "create-account.js",
+  "scripts": {
+    "start": "node create-account.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

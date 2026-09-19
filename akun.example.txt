@@ -1,0 +1,4 @@
+# Format: email|password
+# Masukkan satu akun per baris
+user1@gmail.com|Password123!
+user2@gmail.com|Password123!
